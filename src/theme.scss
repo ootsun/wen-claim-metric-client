@@ -1,0 +1,31 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+$warn: mat-palette($mat-red);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+@include angular-material-theme($theme);
+
+.font-primary {
+  color: mat-color($primary);
+}
+
+.font-accent {
+  color: mat-color($accent);
+}
+
+.primary-button {
+  color: #fff;
+}
+
+.label{
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.reported {
+  background-color: aliceblue;
+  font-weight: unset;
+}

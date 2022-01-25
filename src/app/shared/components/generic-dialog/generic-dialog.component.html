@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>
+  <ng-container *ngIf="data.type == 'CONFIRM'">
+    <mat-icon class="icon" color="primary">help</mat-icon>
+    Confirmation
+  </ng-container>
+  <ng-container *ngIf="data.type == 'ERROR'">
+    <mat-icon class="icon error-icon" color="primary">report_problem</mat-icon>
+    Erreur
+  </ng-container>
+  <ng-container *ngIf="data.type == 'INFO'">
+    <mat-icon class="icon" color="primary">info</mat-icon>
+    {{ data.title ? data.title : "Information" }}
+  </ng-container>
+</h1>
+<form>
+  <div mat-dialog-content>
+    <mat-label>
+      {{ data.message }}
+    </mat-label>
+  </div>
+  <div class="float-right" mat-dialog-actions>
+    <button
+      (click)="onCancel()"
+      *ngIf="data.type == 'CONFIRM'"
+      mat-button
+      type="button"
+    >
+      Non
+    </button>
+    <button
+      (click)="onConfirm()"
+      *ngIf="data.type == 'CONFIRM'"
+      class="primary-button"
+      color="primary"
+      mat-raised-button
+      type="submit"
+    >
+      Oui
+    </button>
+    <button
+      (click)="onOk()"
+      *ngIf="data.type != 'CONFIRM'"
+      class="primary-button"
+      color="primary"
+      mat-raised-button
+      type="submit"
+    >
+      Ok
+    </button>
+  </div>
+</form>

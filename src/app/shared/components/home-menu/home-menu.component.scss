@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+@import "theme";
+
+mat-toolbar {
+  display: flex;
+
+  button {
+    margin-right: 20px;
+  }
+
+  button {
+    width: 120px;
+    text-align: center;
+  }
+
+  .last-item {
+    margin-left: auto;
+  }
+
+  .mat-stroked-button {
+    background-color: white;
+    color: mat-color($accent);
+  }
+}

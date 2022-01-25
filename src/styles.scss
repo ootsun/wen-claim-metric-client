@@ -1,4 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button {
+  text-transform: uppercase;
+}
+
+.float-right {
+  float: right;
+}
+
+.icon {
+  vertical-align: middle;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.selectable {
+  cursor: pointer;
+}
+
+.center {
+  text-align: center;
+}
+
+.buttons-wrapper {
+  button {
+    margin-left: 10px;
+  }
+  mat-icon {
+    padding-left: 5px;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.mat-table-wrapper {
+  overflow: auto;
+  max-height: calc(100vh - 280px);
+}
+
+mat-card {
+  margin: 40px 30px 10px 30px;
+}
+
+.autocomplete-input {
+  width: 250px;
+}

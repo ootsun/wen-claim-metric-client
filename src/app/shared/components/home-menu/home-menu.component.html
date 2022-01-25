@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <ng-container *ngIf="isAuthenticated">
+            <button *ngIf="!currentUrl.includes('/wen-claim')" mat-raised-button routerLink="/wen-claim">Wen claim</button>
+            <button *ngIf="currentUrl.includes('/wen-claim')" mat-stroked-button routerLink="/wen-claim">Wen claim</button>
+
+            <button class="last-item" mat-button (click)="onLogout()">
+                Déconnexion
+            </button>
+        </ng-container>
+    </mat-toolbar-row>
+</mat-toolbar>
