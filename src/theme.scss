@@ -21,11 +21,16 @@ $theme: mat-light-theme($primary, $accent, $warn);
   color: #fff;
 }
 
-.label{
+.label {
   color: rgba(0, 0, 0, 0.54);
 }
 
 .reported {
   background-color: aliceblue;
   font-weight: unset;
+}
+
+mat-toolbar .mat-stroked-button {
+  background-color: white;
+  color: mat-color($accent);
 }

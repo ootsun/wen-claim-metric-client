@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
-@import "theme";
 
 mat-toolbar {
   display: flex;
@@ -20,10 +19,5 @@ mat-toolbar {
 
   .last-item {
     margin-left: auto;
-  }
-
-  .mat-stroked-button {
-    background-color: white;
-    color: mat-color($accent);
   }
 }
