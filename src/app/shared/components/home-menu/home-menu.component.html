@@ -1,5 +1,6 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
+        <span class="app-name">Metric client</span>
         <ng-container *ngIf="isAuthenticated">
             <button *ngIf="!currentUrl.includes('/wen-claim')" mat-raised-button routerLink="/wen-claim">Wen claim</button>
             <button *ngIf="currentUrl.includes('/wen-claim')" mat-stroked-button routerLink="/wen-claim">Wen claim</button>

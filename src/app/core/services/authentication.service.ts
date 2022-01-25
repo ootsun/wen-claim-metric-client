@@ -17,9 +17,9 @@ export class AuthenticationService {
         this.API_BASE_URL = this.appConfigService.apiBaseUrl;
     }
 
-    login(email: string, password: string): Observable<any> {
+    login(username: string, password: string): Observable<any> {
         return this.http.post<any>(this.API_BASE_URL + this.API_PATH + 'login', {
-            email: email,
+            username: username,
             password: password
         });
     }

@@ -1,0 +1,34 @@
+<loading-bar *ngIf="waiting"></loading-bar>
+<main>
+    <mat-card class="mat-elevation-z5">
+        <mat-card-header>
+            <mat-card-title>
+                Bonjour !
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="loginForm" autocomplete="off" (keydown)="onKeyDown($event)">
+                <mat-form-field>
+                    <input matInput type="text" formControlName="username" placeholder="Nom d'utilisateur">
+                    <mat-error *ngIf="loginForm.controls.username.hasError('required')">Ce champ est obligatoire</mat-error>
+                    <mat-error *ngIf="loginForm.controls.username.hasError('incorrect')">Ce nom d'utilisateur n'est pas reconnu</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="password" formControlName="password" placeholder="Mot de passe">
+                    <mat-error *ngIf="loginForm.controls.password.hasError('required')">Ce champ est obligatoire</mat-error>
+                    <mat-error *ngIf="loginForm.controls.password.hasError('incorrect')">Mot de passe incorrect</mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions class="center">
+            <button (click)="onLogin()"
+                    [disabled]="loginForm.invalid || waiting"
+                    class="primary-button"
+                    color=primary
+                    mat-raised-button
+                    type="submit">
+                Se connecter
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</main>

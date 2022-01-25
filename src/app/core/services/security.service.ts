@@ -12,7 +12,7 @@ export class SecurityService {
 
     private authStatusListener: BehaviorSubject<boolean>;
     private userInteracted: boolean;
-    private refreshTokenTimer;
+    private refreshTokenTimer: any;
 
     constructor(
         private localStorageService: LocalStorageService,

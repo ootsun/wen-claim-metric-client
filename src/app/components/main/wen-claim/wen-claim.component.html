@@ -1,0 +1,106 @@
+<loading-bar *ngIf="loading"></loading-bar>
+<mat-card *ngIf="!loading" class="mat-elevation-z5">
+  <mat-card-title>
+    <span class="font-primary">Wen claim</span>
+  </mat-card-title>
+  <mat-card-content>
+    <mat-form-field>
+      <input
+        (keyup)="applyFilter($event.target.value)"
+        matInput
+        placeholder="Rechercher"
+      />
+    </mat-form-field>
+
+    <div class="mat-table-wrapper">
+      <table mat-table [dataSource]="dataSource" matSort matSortActive="date" matSortDirection="desc">
+        <ng-container matColumnDef="date" sticky>
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="font-accent"
+          >
+            Date
+          </th>
+          <td mat-cell *matCellDef="let metric">
+            Le {{ metric.date | date: "EEEE dd LLLL yyyy":"":"fr-BE" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="sessionId">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="font-accent"
+          >
+            SessionId
+          </th>
+          <td mat-cell *matCellDef="let metric">
+            {{ metric.sessionId }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="font-accent"
+          >
+            Amount
+          </th>
+          <td mat-cell *matCellDef="let metric">{{ metric.amount }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="apr">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="font-accent"
+          >
+            APR
+          </th>
+          <td mat-cell *matCellDef="let metric">
+            {{ metric.apr }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cost">
+          <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header
+                  class="font-accent"
+          >
+            Cost
+          </th>
+          <td mat-cell *matCellDef="let metric">
+            {{ metric.cost }}
+          </td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr
+          *matRowDef="let metric; columns: displayedColumns"
+          mat-row
+        ></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="center" [colSpan]="displayedColumns.length">
+            Aucun élément
+          </td>
+        </tr>
+      </table>
+
+      <mat-paginator [length]="metrics?.length"
+                     [pageSize]="10"
+                     [pageSizeOptions]="[10, 15, 20, 50, 100]"
+                     showFirstLastButtons></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

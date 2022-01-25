@@ -1,0 +1,12 @@
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 64px);
+
+  mat-form-field {
+    margin: 15px;
+    width: 250px;
+    display: block;
+  }
+}
