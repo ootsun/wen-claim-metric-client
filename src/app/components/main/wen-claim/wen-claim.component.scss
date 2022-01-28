@@ -7,18 +7,11 @@ table {
   width: 100%;
 }
 
-.mat-column-date {
-  width: 20%;
-}
-
-.mat-column-patient, .mat-column-type {
-  width: 25%;
-}
-
-.mat-column-toPay, .mat-column-paid, .mat-column-actions {
-  width: 10%;
-}
-
-.orphan-icon {
-  margin-left: 24px;
+mat-chip-list {
+  width: 100%;
+  background-color: #8DD6FF;
+  ::ng-deep .mat-chip-list-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
 }

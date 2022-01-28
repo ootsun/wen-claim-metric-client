@@ -22,6 +22,12 @@ export class WenClaimComponent implements OnInit {
 
   metrics: Metric[];
   loading = true;
+  nbCurrentMonth = 0;
+  nbPreviousMonth = 0;
+  monthlyAverage = 0;
+  nbCurrentMonthDistinct = 0;
+  nbPreviousMonthDistinct = 0;
+  monthlyAverageDistinct = 0;
 
   constructor(
     private metricService: MetricService,
@@ -38,6 +44,7 @@ export class WenClaimComponent implements OnInit {
       (data) => {
         this.metrics = data;
         this.initDataSource();
+        this.computeStats();
       },
       (error) => {
         this.dialogService.error(error);
@@ -80,5 +87,49 @@ export class WenClaimComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  private computeStats() {
+    const currentMonth = new Date().getUTCMonth();
+    const temp = new Date();
+    temp.setUTCMonth(temp.getUTCMonth() - 1);
+    const previousMonth = temp.getMonth();
+    let minDate = new Date();
+    const sessionMap = new Map<string, Metric>();
+
+    for (const metric of this.metrics) {
+      sessionMap.set(metric.sessionId, metric);
+      const metricDate = new Date(metric.date);
+      if (metricDate.getUTCMonth() === currentMonth) {
+        this.nbCurrentMonth++;
+      } else {
+        if (metricDate.getUTCMonth() === previousMonth) {
+          this.nbPreviousMonth++;
+        }
+      }
+      if (metricDate.getTime() < minDate.getTime()) {
+        minDate = metricDate;
+      }
+    }
+    const today = new Date();
+    let diffMonth = (today.getUTCFullYear() - minDate.getUTCFullYear()) * 12 + (today.getUTCMonth() - minDate.getUTCMonth()) + 1;
+    this.monthlyAverage = this.metrics.length / diffMonth;
+
+    minDate = new Date();
+    for (const metric of sessionMap.values()) {
+      const metricDate = new Date(metric.date);
+      if (metricDate.getUTCMonth() === currentMonth) {
+        this.nbCurrentMonthDistinct++;
+      } else {
+        if (metricDate.getUTCMonth() === previousMonth) {
+          this.nbPreviousMonthDistinct++;
+        }
+      }
+      if (metricDate.getTime() < minDate.getTime()) {
+        minDate = metricDate;
+      }
+    }
+    diffMonth = (today.getUTCFullYear() - minDate.getUTCFullYear()) * 12 + (today.getUTCMonth() - minDate.getUTCMonth()) + 1;
+    this.monthlyAverageDistinct = sessionMap.size / diffMonth;
   }
 }

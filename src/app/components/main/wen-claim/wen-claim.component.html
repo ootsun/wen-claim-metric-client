@@ -4,6 +4,12 @@
     <span class="font-primary">Wen claim</span>
   </mat-card-title>
   <mat-card-content>
+    <mat-chip-list>
+      <mat-chip color="primary" selected [matTooltip]="'Total : ' + nbCurrentMonth">{{'Ce mois-ci : ' + nbCurrentMonthDistinct}}</mat-chip>
+      <mat-chip [matTooltip]="'Total : ' + nbPreviousMonth + ''">{{'Le mois précédent : ' + nbPreviousMonthDistinct}}</mat-chip>
+      <mat-chip [matTooltip]="'Total : ' + monthlyAverage + ''">{{'Moyenne mensuelle : ' + monthlyAverageDistinct}}</mat-chip>
+    </mat-chip-list>
+
     <mat-form-field>
       <input
         (keyup)="applyFilter($event.target.value)"
@@ -23,7 +29,7 @@
           >
             Date
           </th>
-          <td mat-cell *matCellDef="let metric">
+          <td mat-cell *matCellDef="let metric" matTooltip="{{ metric.date | date: 'HH:mm:ss':'':'fr-BE' }}">
             Le {{ metric.date | date: "EEEE dd LLLL yyyy":"":"fr-BE" }}
           </td>
         </ng-container>
