@@ -1,5 +1,5 @@
 <loading-bar *ngIf="loading"></loading-bar>
-<mat-card *ngIf="!loading" class="mat-elevation-z5">
+<mat-card class="mat-elevation-z5">
   <mat-card-title>
     <span class="font-primary">Wen claim</span>
   </mat-card-title>
@@ -9,14 +9,6 @@
       <mat-chip [matTooltip]="'Total : ' + nbPreviousMonth + ''">{{'Le mois précédent : ' + nbPreviousMonthDistinct}}</mat-chip>
       <mat-chip [matTooltip]="'Total : ' + monthlyAverage + ''">{{'Moyenne mensuelle : ' + monthlyAverageDistinct}}</mat-chip>
     </mat-chip-list>
-
-    <mat-form-field>
-      <input
-        (keyup)="applyFilter($event.target.value)"
-        matInput
-        placeholder="Rechercher"
-      />
-    </mat-form-field>
 
     <div class="mat-table-wrapper">
       <table mat-table [dataSource]="dataSource" matSort matSortActive="date" matSortDirection="desc">
@@ -103,7 +95,7 @@
         </tr>
       </table>
 
-      <mat-paginator [length]="metrics?.length"
+      <mat-paginator [length]="totalNbItems"
                      [pageSize]="10"
                      [pageSizeOptions]="[10, 15, 20, 50, 100]"
                      showFirstLastButtons></mat-paginator>
